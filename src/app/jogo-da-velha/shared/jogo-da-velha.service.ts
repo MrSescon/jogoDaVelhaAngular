@@ -104,14 +104,17 @@ export class JogoDaVelhaService {
    */
   jogar(posX: number, posY:number): void {
     //jogada inválida
-    if (this.tabuleiro[posX][posY] !== this.VAZIO || this.vitoria) {
+    if (this.tabuleiro[posX][posY] !== this.VAZIO || 
+      this.vitoria) {
       return;
     }
 
     this.tabuleiro[posX][posY] = this._jogador;
     this.numMovimentos++;
-    this.vitoria = this.fimJogo(posX, posY, this.tabuleiro, this.jogador);
-    this._jogador = (this._jogador === this.X) ? this.O : this.X;
+    this.vitoria = this.fimJogo(posX, posY, 
+      this.tabuleiro, this.jogador);
+    this._jogador = (this._jogador === this.X) 
+    ? this.O : this.X;
 
     if(!this.vitoria && this.numMovimentos < 9) {
       this.cpuJogar();
@@ -139,13 +142,14 @@ export class JogoDaVelhaService {
    * @param number jogador
    * @return array
    */
-  fimJogo(linha: number, coluna: number, tabuleiro: any, jogador: number) {
+  fimJogo(linha: number, coluna: number, 
+    tabuleiro: any, jogador: number) {
     let fim: any = false;
 
     // valida a linha
     if (tabuleiro[linha][0] === jogador 
       && tabuleiro[linha][1] === jogador 
-      && tabuleiro[linha][3] === jogador) {
+      && tabuleiro[linha][2] === jogador) {
         fim = [[linha, 0], [linha, 1], [linha, 2]];
       }
 
